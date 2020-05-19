@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
+import jfxtras.styles.jmetro.Style;
 
 import java.io.IOException;
 
@@ -30,8 +32,11 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        stage.setResizable(false);
+        scene = new Scene(loadFXML("librarian_auth"));
         stage.setScene(scene);
+        var jMetro = new JMetro(Style.LIGHT);
+        jMetro.setScene(scene);
         stage.show();
     }
 
