@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+            maxHeight="-Infinity" prefHeight="600.0"
+            prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/10.0.2-internal"
+            fx:controller="io.github.arnabmaji19.libera.desktop.controller.LibrarianPanelController">
+    <stylesheets>
+        <URL value="@../css/style.css"/>
+    </stylesheets>
+    <left>
+        <AnchorPane prefHeight="600.0" prefWidth="165.0" style="-fx-background-color: #0078D7;"
+                    BorderPane.alignment="CENTER">
+            <VBox fx:id="buttonContainer" layoutX="33.0" layoutY="109.0" prefHeight="491.0" prefWidth="180.0"
+                  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                  AnchorPane.topAnchor="20.0">
+                <Button mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn"
+                        text="Add Books"/>
+                <Button mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn"
+                        text="Remove Books"/>
+                <Button mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn"
+                        text="Search Books"/>
+                <Button mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn"
+                        text="Add Holdings"/>
+                <Button mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn"
+                        text="Remove Holdings"/>
+                <Button mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn"
+                        text="Issue Books"/>
+                <Button mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn"
+                        text="Return Books"/>
+                <Button mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn"
+                        text="View Issued Books"/>
+            </VBox>
+        </AnchorPane>
+    </left>
+    <top>
+        <AnchorPane prefHeight="40.0" prefWidth="476.0" style="-fx-background-color: #4C4A48;"
+                    BorderPane.alignment="CENTER">
+            <ImageView layoutX="10.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true"
+                       AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="4.0">
+                <Image url="@../images/home.png"/>
+            </ImageView>
+        </AnchorPane>
+    </top>
+</BorderPane>
