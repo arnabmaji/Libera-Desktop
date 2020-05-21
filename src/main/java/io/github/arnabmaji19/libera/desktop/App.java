@@ -1,5 +1,6 @@
 package io.github.arnabmaji19.libera.desktop;
 
+import io.github.arnabmaji19.libera.desktop.datasource.RestConfig;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -40,4 +41,9 @@ public class App extends Application {
         stage.show();
     }
 
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+        RestConfig.getClient().close();
+    }
 }

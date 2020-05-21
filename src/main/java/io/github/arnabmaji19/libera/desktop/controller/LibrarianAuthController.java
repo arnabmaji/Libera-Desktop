@@ -1,6 +1,9 @@
 package io.github.arnabmaji19.libera.desktop.controller;
 
+import io.github.arnabmaji19.libera.desktop.datasource.AuthRequest;
 import io.github.arnabmaji19.libera.desktop.util.AlertDialog;
+import io.github.arnabmaji19.libera.desktop.util.Session;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
@@ -40,6 +43,32 @@ public class LibrarianAuthController implements Initializable {
             return;
         }
 
-        // TODO: make http request to authenticate librarians
+        progressbar.setVisible(true);  // show the progress bar
+
+        // make http request to authenticate librarians
+        AuthRequest
+                .getInstance()
+                .execute(AuthRequest.AuthType.LIBRARIAN, email, password)
+                .thenAcceptAsync(response -> {
+
+                    String message;
+                    if (response.getStatusCode() == 200) {
+                        // user if successfully authenticated
+                        message = "Successful";
+                        // create session
+                        Session
+                                .getInstance()
+                                .create(response.getUser(), response.getAuthToken());
+                    } else {
+                        message = "Invalid email or password!";
+                    }
+
+                    // run ui changes on fx application thread
+                    Platform.runLater(() -> {
+                        progressbar.setVisible(false);
+                        alertDialog.show(message);
+                    });
+
+                });
     }
 }
