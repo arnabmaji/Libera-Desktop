@@ -17,21 +17,21 @@
               AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
         <VBox GridPane.columnIndex="0" GridPane.rowIndex="0">
             <Label text="Title"/>
-            <TextField fx:id="titleTextField"/>
+            <TextField fx:id="titleTextField" styleClass="form-control"/>
         </VBox>
         <VBox GridPane.columnIndex="0" GridPane.rowIndex="1">
             <Label text="Author"/>
-            <HBox spacing="10" alignment="CENTER_LEFT">
-                <ComboBox fx:id="authorComboBox"/>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <ComboBox fx:id="authorComboBox" styleClass="form-control"/>
                 <ImageView pickOnBounds="true" preserveRatio="true">
                     <Image url="@../images/plus.png"/>
                 </ImageView>
             </HBox>
         </VBox>
-        <VBox GridPane.columnIndex="0" GridPane.rowIndex="2">
+        <VBox prefHeight="54.0" prefWidth="283.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
             <Label text="Publisher"/>
-            <HBox spacing="10" alignment="CENTER_LEFT">
-                <ComboBox fx:id="publisherComboBox"/>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <ComboBox fx:id="publisherComboBox" styleClass="form-control"/>
                 <ImageView pickOnBounds="true" preserveRatio="true">
                     <Image url="@../images/plus.png"/>
                 </ImageView>
@@ -39,9 +39,9 @@
         </VBox>
         <VBox GridPane.columnIndex="0" GridPane.rowIndex="3">
             <Label text="Year Published"/>
-            <TextField fx:id="yearPublishedTextField"/>
+            <TextField fx:id="yearPublishedTextField" styleClass="form-control"/>
         </VBox>
-        <Button text="Add" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="4"
-                onAction="#addNewBook"/>
+        <Button onAction="#addNewBook" text="Add Book" GridPane.columnIndex="0" GridPane.halignment="RIGHT"
+                GridPane.rowIndex="4"/>
     </GridPane>
 </AnchorPane>

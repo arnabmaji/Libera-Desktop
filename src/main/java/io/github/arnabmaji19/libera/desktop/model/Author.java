@@ -36,4 +36,24 @@ public class Author {
     public String toString() {
         return firstName + " " + lastName;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Author author = (Author) o;
+
+        if (id != author.id) return false;
+        if (!firstName.equals(author.firstName)) return false;
+        return lastName.equals(author.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + firstName.hashCode();
+        result = 31 * result + lastName.hashCode();
+        return result;
+    }
 }
