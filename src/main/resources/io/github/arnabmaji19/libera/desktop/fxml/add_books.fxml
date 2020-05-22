@@ -41,6 +41,7 @@
             <Label text="Year Published"/>
             <TextField fx:id="yearPublishedTextField"/>
         </VBox>
-        <Button text="Add" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="4"/>
+        <Button text="Add" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="4"
+                onAction="#addNewBook"/>
     </GridPane>
 </AnchorPane>
