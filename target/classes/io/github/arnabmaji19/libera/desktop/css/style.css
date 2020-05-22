@@ -1,5 +1,6 @@
 .root {
     -fx-font-size: 18px;
+    -fx-background-color: white;
 }
 
 .h1 {
@@ -8,4 +9,17 @@
 
 .h3 {
     -fx-font-size: 20px;
+}
+
+.tab-btn {
+    -fx-pref-height: 40;
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14;
+    -fx-alignment: center-left;
+}
+
+.tab-btn:focused {
+    -fx-background-color: #388ed1;
+    -fx-border-style: none;
 }

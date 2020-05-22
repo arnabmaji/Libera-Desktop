@@ -21,4 +21,5 @@
 
 .tab-btn:focused {
     -fx-background-color: #388ed1;
+    -fx-border-style: none;
 }

@@ -5,9 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1"
-            maxHeight="-Infinity" prefHeight="600.0"
-            prefWidth="800.0"
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" prefHeight="600.0" prefWidth="800.0"
             xmlns="http://javafx.com/javafx/10.0.2-internal"
             fx:controller="io.github.arnabmaji19.libera.desktop.controller.LibrarianPanelController">
     <stylesheets>
@@ -19,12 +17,12 @@
             <VBox fx:id="buttonContainer" layoutX="33.0" layoutY="109.0" prefHeight="491.0" prefWidth="180.0"
                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                   AnchorPane.topAnchor="20.0">
-                <Button mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn"
-                        text="Add Books"/>
+                <Button fx:id="addBooksButton" mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}"
+                        styleClass="tab-btn" text="Add Books" onAction="#navigate"/>
+                <Button fx:id="searchBooksButton" mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}"
+                        styleClass="tab-btn" text="Search Books" onAction="#navigate"/>
                 <Button mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn"
                         text="Remove Books"/>
-                <Button mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn"
-                        text="Search Books"/>
                 <Button mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn"
                         text="Add Holdings"/>
                 <Button mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn"
@@ -47,4 +45,7 @@
             </ImageView>
         </AnchorPane>
     </top>
+    <center>
+        <Pane BorderPane.alignment="CENTER" fx:id="pane"/>
+    </center>
 </BorderPane>
