@@ -1,32 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0"
             xmlns="http://javafx.com/javafx/10.0.2-internal"
             fx:controller="io.github.arnabmaji19.libera.desktop.controller.AddBooksController">
-   <stylesheets>
-      <URL value="@../css/style.css"/>
-   </stylesheets>
-   <Label layoutX="14.0" layoutY="14.0" styleClass="h1" text="Add Books"/>
-   <GridPane layoutX="14.0" layoutY="63.0" prefHeight="337.0" prefWidth="600.0" vgap="10" AnchorPane.bottomAnchor="0.0"
-             AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
-      <VBox GridPane.columnIndex="0" GridPane.rowIndex="0">
-         <Label text="Title"/>
-         <TextField fx:id="titleTextField"/>
-      </VBox>
-
-      <VBox GridPane.columnIndex="0" GridPane.rowIndex="1">
-         <Label text="Author"/>
-         <ComboBox fx:id="authorComboBox"/>
-      </VBox>
-      <columnConstraints>
-         <ColumnConstraints/>
-      </columnConstraints>
-      <rowConstraints>
-         <RowConstraints/>
-         <RowConstraints/>
-      </rowConstraints>
-   </GridPane>
+    <stylesheets>
+        <URL value="@../css/style.css"/>
+    </stylesheets>
+    <Label layoutX="14.0" layoutY="14.0" styleClass="h1" text="Add Books" AnchorPane.leftAnchor="30.0"
+           AnchorPane.topAnchor="14.0"/>
+    <GridPane layoutX="14.0" layoutY="63.0" prefHeight="337.0" prefWidth="600.0" vgap="10" AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+        <VBox GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <Label text="Title"/>
+            <TextField fx:id="titleTextField"/>
+        </VBox>
+        <VBox GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <Label text="Author"/>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <ComboBox fx:id="authorComboBox"/>
+                <ImageView pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../images/plus.png"/>
+                </ImageView>
+            </HBox>
+        </VBox>
+        <VBox GridPane.columnIndex="0" GridPane.rowIndex="2">
+            <Label text="Publisher"/>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <ComboBox fx:id="publisherComboBox"/>
+                <ImageView pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../images/plus.png"/>
+                </ImageView>
+            </HBox>
+        </VBox>
+        <VBox GridPane.columnIndex="0" GridPane.rowIndex="3">
+            <Label text="Year Published"/>
+            <TextField fx:id="yearPublishedTextField"/>
+        </VBox>
+        <Button text="Add" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="4"/>
+    </GridPane>
 </AnchorPane>
