@@ -4,7 +4,7 @@ import io.github.arnabmaji19.libera.desktop.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ public class LibrarianPanelController {
     @FXML
     private Button searchBooksButton;
     @FXML
-    private Pane pane;
+    private AnchorPane pane;
 
     @FXML
     private void navigate(ActionEvent e) throws IOException {
@@ -25,6 +25,13 @@ public class LibrarianPanelController {
         if (e.getSource().equals(addBooksButton)) fxml = "add_books";
         else if (e.getSource().equals(searchBooksButton)) fxml = "search_books";
 
-        pane.getChildren().setAll(App.loadFXML(fxml));
+        var child = App.loadFXML(fxml);
+        // set anchors for the child
+        AnchorPane.setTopAnchor(child, 0.0);
+        AnchorPane.setBottomAnchor(child, 0.0);
+        AnchorPane.setLeftAnchor(child, 0.0);
+        AnchorPane.setRightAnchor(child, 0.0);
+        // add child to the pane
+        pane.getChildren().setAll(child);
     }
 }

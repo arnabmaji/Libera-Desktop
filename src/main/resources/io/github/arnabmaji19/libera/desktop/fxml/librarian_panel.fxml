@@ -17,12 +17,10 @@
             <VBox fx:id="buttonContainer" layoutX="33.0" layoutY="109.0" prefHeight="491.0" prefWidth="180.0"
                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                   AnchorPane.topAnchor="20.0">
-                <Button fx:id="addBooksButton" mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}"
-                        styleClass="tab-btn" text="Add Books" onAction="#navigate"/>
-                <Button fx:id="searchBooksButton" mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}"
-                        styleClass="tab-btn" text="Search Books" onAction="#navigate"/>
-                <Button mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn"
-                        text="Remove Books"/>
+                <Button fx:id="addBooksButton" mnemonicParsing="false" onAction="#navigate"
+                        prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn" text="Add Books"/>
+                <Button fx:id="searchBooksButton" mnemonicParsing="false" onAction="#navigate"
+                        prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn" text="Search Books"/>
                 <Button mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn"
                         text="Add Holdings"/>
                 <Button mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn"
@@ -46,6 +44,6 @@
         </AnchorPane>
     </top>
     <center>
-        <Pane BorderPane.alignment="CENTER" fx:id="pane"/>
+        <AnchorPane BorderPane.alignment="CENTER" fx:id="pane"/>
     </center>
 </BorderPane>

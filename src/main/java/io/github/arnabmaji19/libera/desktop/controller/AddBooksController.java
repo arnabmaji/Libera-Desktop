@@ -76,7 +76,7 @@ public class AddBooksController implements Initializable {
             alertDialog.show(errorMessage);
             return;
         }
-        // TODO: make an http request to add new book
+        // make an http request to add new book
         BookRequest
                 .getInstance()
                 .add(title, author, publisher, yearPublished)
