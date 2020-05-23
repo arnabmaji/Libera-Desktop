@@ -1,6 +1,7 @@
 package io.github.arnabmaji19.libera.desktop.controller;
 
 import io.github.arnabmaji19.libera.desktop.datasource.AuthorRequest;
+import io.github.arnabmaji19.libera.desktop.datasource.BookRequest;
 import io.github.arnabmaji19.libera.desktop.datasource.PublisherRequest;
 import io.github.arnabmaji19.libera.desktop.model.Author;
 import io.github.arnabmaji19.libera.desktop.model.Publisher;
@@ -76,6 +77,10 @@ public class AddBooksController implements Initializable {
             return;
         }
         // TODO: make an http request to add new book
+        BookRequest
+                .getInstance()
+                .add(title, author, publisher, yearPublished)
+                .thenAccept(success -> Platform.runLater(() -> alertDialog.show(success ? "Successful!" : "Something went wrong!")));
     }
 
     private String validateFields(String title,
