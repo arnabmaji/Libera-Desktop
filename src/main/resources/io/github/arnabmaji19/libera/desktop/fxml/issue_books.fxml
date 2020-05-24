@@ -25,7 +25,7 @@
                     fx:id="emailTextField"
                     styleClass="form-control"/>
             <HBox alignment="CENTER_RIGHT" spacing="8">
-                <ImageView fx:id="loadingImageView" pickOnBounds="true" preserveRatio="true" visible="false">
+                <ImageView fx:id="fetchUserLoadingAnimation" pickOnBounds="true" preserveRatio="true" visible="false">
                     <Image url="@../images/loading.gif"/>
                 </ImageView>
                 <Button
