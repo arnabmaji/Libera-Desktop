@@ -21,8 +21,9 @@
                         prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn" text="Add Books"/>
                 <Button fx:id="searchBooksButton" mnemonicParsing="false" onAction="#navigate"
                         prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn" text="Search Books"/>
-                <Button mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn"
-                        text="Add Holdings"/>
+                <Button fx:id="addHoldingsButton" mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}"
+                        styleClass="tab-btn"
+                        text="Add Holdings" onAction="#navigate"/>
                 <Button mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn"
                         text="Remove Holdings"/>
                 <Button mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn"

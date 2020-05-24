@@ -15,6 +15,8 @@ public class LibrarianPanelController {
     @FXML
     private Button searchBooksButton;
     @FXML
+    private Button addHoldingsButton;
+    @FXML
     private AnchorPane pane;
 
     @FXML
@@ -24,6 +26,7 @@ public class LibrarianPanelController {
 
         if (e.getSource().equals(addBooksButton)) fxml = "add_books";
         else if (e.getSource().equals(searchBooksButton)) fxml = "search_books";
+        else if (e.getSource().equals(addHoldingsButton)) fxml = "add_holdings";
 
         var child = App.loadFXML(fxml);
         // set anchors for the child
