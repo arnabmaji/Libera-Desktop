@@ -4,10 +4,8 @@ import com.google.gson.Gson;
 import org.asynchttpclient.AsyncHttpClient;
 import org.asynchttpclient.Response;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 
 public abstract class EntityRequest<T> {
 
@@ -28,20 +26,12 @@ public abstract class EntityRequest<T> {
         /*
          * Make an http request for fetching all entries
          */
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                var url = RestConfig.getBaseUrl() + route;
-                return client
-                        .prepareGet(url)
-                        .execute()
-                        .toCompletableFuture()
-                        .thenApply(this::parseResponse)
-                        .get();
-            } catch (InterruptedException | ExecutionException e) {
-                e.printStackTrace();
-            }
-            return Collections.emptyList();
-        });
+        var url = RestConfig.getBaseUrl() + route;
+        return client
+                .prepareGet(url)
+                .execute()
+                .toCompletableFuture()
+                .thenApply(this::parseResponse);
     }
 
     public Gson getGson() {
