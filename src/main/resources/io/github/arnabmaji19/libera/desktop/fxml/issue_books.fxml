@@ -29,7 +29,8 @@
                     <Image url="@../images/loading.gif"/>
                 </ImageView>
                 <Button
-                        text="Fetch"/>
+                        text="Fetch"
+                        onAction="#fetchUser"/>
             </HBox>
             <VBox spacing="8" fx:id="userDetailsForm" visible="false">
                 <Label

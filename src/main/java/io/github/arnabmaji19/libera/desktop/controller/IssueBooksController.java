@@ -52,10 +52,25 @@ public class IssueBooksController implements Initializable {
         var holdingNumber = holdingNumberTextField.getText();
 
         if (!Validations.isNumber(holdingNumber)) {
-            alertDialog.show("Holding Number must be an Integer");
+            alertDialog.show("Holding Number must be an Integer!");
             return;
         }
         addedHoldingsListView.getItems().add(Integer.parseInt(holdingNumber));
         holdingNumberTextField.clear();
+    }
+
+    @FXML
+    private void fetchUser() {
+        /*
+         * Fetch user by email and show user details in the form
+         */
+
+        var email = emailTextField.getText();
+        if (email.isBlank()) {
+            alertDialog.show("Email can't be Empty!");
+            return;
+        }
+
+
     }
 }
