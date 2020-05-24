@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
+import org.asynchttpclient.util.HttpConstants;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -52,7 +53,7 @@ public class LibrarianAuthController implements Initializable {
                 .thenAcceptAsync(response -> {
 
                     String message;
-                    if (response.getStatusCode() == 200) {
+                    if (response.getStatusCode() == HttpConstants.ResponseStatusCodes.OK_200) {
                         // user if successfully authenticated
                         message = "Successful";
                         // create session

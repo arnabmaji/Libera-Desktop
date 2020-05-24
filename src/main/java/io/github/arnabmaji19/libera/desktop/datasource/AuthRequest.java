@@ -3,6 +3,7 @@ package io.github.arnabmaji19.libera.desktop.datasource;
 import com.google.gson.Gson;
 import io.github.arnabmaji19.libera.desktop.model.User;
 import org.asynchttpclient.AsyncHttpClient;
+import org.asynchttpclient.util.HttpConstants;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -46,7 +47,7 @@ public class AuthRequest {
                 var response = future.get();
                 User user = null;
                 String authToken = null;
-                if (response.getStatusCode() == 200) {
+                if (response.getStatusCode() == HttpConstants.ResponseStatusCodes.OK_200) {
                     user = gson.fromJson(response.getResponseBody(), User.class);
                     authToken = response.getHeader("x-auth-token");
                 }
