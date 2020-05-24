@@ -17,16 +17,19 @@ public class LibrarianPanelController {
     @FXML
     private Button addHoldingsButton;
     @FXML
+    private Button removeHoldingsButton;
+    @FXML
     private AnchorPane pane;
 
     @FXML
     private void navigate(ActionEvent e) throws IOException {
 
         String fxml = null;
-
-        if (e.getSource().equals(addBooksButton)) fxml = "add_books";
-        else if (e.getSource().equals(searchBooksButton)) fxml = "search_books";
-        else if (e.getSource().equals(addHoldingsButton)) fxml = "add_holdings";
+        var source = e.getSource();
+        if (source.equals(addBooksButton)) fxml = "add_books";
+        else if (source.equals(searchBooksButton)) fxml = "search_books";
+        else if (source.equals(addHoldingsButton)) fxml = "add_holdings";
+        else if (source.equals(removeHoldingsButton)) fxml = "remove_holdings";
 
         var child = App.loadFXML(fxml);
         // set anchors for the child

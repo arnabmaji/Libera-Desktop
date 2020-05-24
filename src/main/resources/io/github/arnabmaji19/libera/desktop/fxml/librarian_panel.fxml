@@ -24,8 +24,9 @@
                 <Button fx:id="addHoldingsButton" mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}"
                         styleClass="tab-btn"
                         text="Add Holdings" onAction="#navigate"/>
-                <Button mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn"
-                        text="Remove Holdings"/>
+                <Button fx:id="removeHoldingsButton" mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}"
+                        styleClass="tab-btn"
+                        text="Remove Holdings" onAction="#navigate"/>
                 <Button mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn"
                         text="Issue Books"/>
                 <Button mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn"
