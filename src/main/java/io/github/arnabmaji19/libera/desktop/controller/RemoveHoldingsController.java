@@ -1,7 +1,9 @@
 package io.github.arnabmaji19.libera.desktop.controller;
 
+import io.github.arnabmaji19.libera.desktop.datasource.HoldingRequest;
 import io.github.arnabmaji19.libera.desktop.util.AlertDialog;
 import io.github.arnabmaji19.libera.desktop.util.Validations;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
@@ -35,6 +37,13 @@ public class RemoveHoldingsController implements Initializable {
         }
 
         // make an http request to remove the holding
-        loadingImageView.setVisible(true);  // show the loading animation
+        loadingImageView.setVisible(true);
+        HoldingRequest
+                .getInstance()
+                .remove(Integer.parseInt(number))
+                .thenAcceptAsync(success -> Platform.runLater(() -> {
+                    alertDialog.show(success ? "Successful!" : "Something went wrong!");
+                    loadingImageView.setVisible(false);
+                }));
     }
 }
