@@ -11,8 +11,6 @@ import java.io.IOException;
 public class LibrarianPanelController {
 
     @FXML
-    private Button addBooksButton;
-    @FXML
     private Button searchBooksButton;
     @FXML
     private Button addHoldingsButton;
@@ -20,6 +18,10 @@ public class LibrarianPanelController {
     private Button removeHoldingsButton;
     @FXML
     private AnchorPane pane;
+    @FXML
+    private Button addBooksButton;
+    @FXML
+    private Button issueBooksButton;
 
     @FXML
     private void navigate(ActionEvent e) throws IOException {
@@ -30,6 +32,7 @@ public class LibrarianPanelController {
         else if (source.equals(searchBooksButton)) fxml = "search_books";
         else if (source.equals(addHoldingsButton)) fxml = "add_holdings";
         else if (source.equals(removeHoldingsButton)) fxml = "remove_holdings";
+        else if (source.equals(issueBooksButton)) fxml = "issue_books";
 
         var child = App.loadFXML(fxml);
         // set anchors for the child
