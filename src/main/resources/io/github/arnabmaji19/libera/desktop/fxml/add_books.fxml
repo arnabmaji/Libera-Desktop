@@ -23,7 +23,7 @@
             <Label text="Author"/>
             <HBox alignment="CENTER_LEFT" spacing="10">
                 <ComboBox fx:id="authorComboBox" styleClass="form-control"/>
-                <ImageView pickOnBounds="true" preserveRatio="true">
+                <ImageView pickOnBounds="true" preserveRatio="true" onMouseClicked="#addAuthor">
                     <Image url="@../images/plus.png"/>
                 </ImageView>
             </HBox>

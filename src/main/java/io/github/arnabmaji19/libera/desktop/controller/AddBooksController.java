@@ -1,5 +1,6 @@
 package io.github.arnabmaji19.libera.desktop.controller;
 
+import io.github.arnabmaji19.libera.desktop.App;
 import io.github.arnabmaji19.libera.desktop.datasource.AuthorRequest;
 import io.github.arnabmaji19.libera.desktop.datasource.BookRequest;
 import io.github.arnabmaji19.libera.desktop.datasource.PublisherRequest;
@@ -12,9 +13,14 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import jfxtras.styles.jmetro.JMetro;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.CompletableFuture;
@@ -99,4 +105,19 @@ public class AddBooksController implements Initializable {
     }
 
 
+    @FXML
+    private void addAuthor() throws IOException {
+        /*
+         * Show a stage to add new authors
+         */
+
+        var stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Add Author");
+        var scene = new Scene(App.loadFXML("add_author"));
+        var jMetro = new JMetro();
+        jMetro.setScene(scene);
+        stage.setScene(scene);
+        stage.show();
+    }
 }

@@ -33,8 +33,6 @@
                 <Button fx:id="returnBooksButton" mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}"
                         styleClass="tab-btn"
                         text="Return Books" onAction="#navigate"/>
-                <Button mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn"
-                        text="View Issued Books"/>
             </VBox>
         </AnchorPane>
     </left>
