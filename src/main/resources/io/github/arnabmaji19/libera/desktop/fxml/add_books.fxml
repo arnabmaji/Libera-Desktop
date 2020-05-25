@@ -32,7 +32,7 @@
             <Label text="Publisher"/>
             <HBox alignment="CENTER_LEFT" spacing="10">
                 <ComboBox fx:id="publisherComboBox" styleClass="form-control"/>
-                <ImageView pickOnBounds="true" preserveRatio="true">
+                <ImageView pickOnBounds="true" preserveRatio="true" onMouseClicked="#addPublisher">
                     <Image url="@../images/plus.png"/>
                 </ImageView>
             </HBox>

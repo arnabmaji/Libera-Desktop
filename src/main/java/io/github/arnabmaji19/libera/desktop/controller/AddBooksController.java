@@ -37,11 +37,16 @@ public class AddBooksController implements Initializable {
     private TextField yearPublishedTextField;
 
     private AlertDialog alertDialog;
+    private Stage stage;
+    private JMetro jMetro;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         this.alertDialog = new AlertDialog();
+        this.stage = new Stage();
+        this.stage.initModality(Modality.APPLICATION_MODAL);
+        this.jMetro = new JMetro();
 
         // fetch authors for combobox
         var fetchAuthors = AuthorRequest
@@ -111,11 +116,21 @@ public class AddBooksController implements Initializable {
          * Show a stage to add new authors
          */
 
-        var stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setTitle("Add Author");
-        var scene = new Scene(App.loadFXML("add_author"));
-        var jMetro = new JMetro();
+        show("add_author");
+
+    }
+
+    @FXML
+    private void addPublisher() throws IOException {
+        /*
+         * Show a stage to add new publishers
+         */
+
+        show("add_publisher");
+    }
+
+    private void show(String fxml) throws IOException {
+        var scene = new Scene(App.loadFXML(fxml));
         jMetro.setScene(scene);
         stage.setScene(scene);
         stage.show();
