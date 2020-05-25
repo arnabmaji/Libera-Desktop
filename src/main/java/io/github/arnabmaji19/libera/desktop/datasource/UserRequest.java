@@ -1,24 +1,17 @@
 package io.github.arnabmaji19.libera.desktop.datasource;
 
-import com.google.gson.Gson;
 import io.github.arnabmaji19.libera.desktop.model.UserDetails;
-import org.asynchttpclient.AsyncHttpClient;
 import org.asynchttpclient.Response;
 import org.asynchttpclient.util.HttpConstants;
 
 import java.util.concurrent.CompletableFuture;
 
-public class UserRequest {
+public class UserRequest extends HttpRequest {
 
     private static final UserRequest instance = new UserRequest();
-    private static final String ROUTE = "users/";
-
-    private final AsyncHttpClient client;
-    private final Gson gson;
 
     private UserRequest() {
-        this.client = RestConfig.getClient();
-        this.gson = new Gson();
+        setRoute("users/");
     }
 
     public static UserRequest getInstance() {
@@ -30,14 +23,12 @@ public class UserRequest {
          * Make an http get request to fetch user by email
          */
 
-        var urlWithParams = RestConfig.getBaseUrl() + ROUTE + email;
-        return client
+        var urlWithParams = getBaseUrl() + getRoute() + email;
+        return getClient()
                 .prepareGet(urlWithParams)
                 .execute()
                 .toCompletableFuture()
-                .thenApply(this::parseResponse);
-
-
+                .thenApplyAsync(this::parseResponse);
     }
 
     private UserDetails parseResponse(Response response) {
@@ -46,6 +37,6 @@ public class UserRequest {
          */
         if (response.getStatusCode() != HttpConstants.ResponseStatusCodes.OK_200)
             return null;
-        return gson.fromJson(response.getResponseBody(), UserDetails.class);
+        return getGson().fromJson(response.getResponseBody(), UserDetails.class);
     }
 }

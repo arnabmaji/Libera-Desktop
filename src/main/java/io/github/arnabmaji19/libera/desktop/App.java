@@ -1,6 +1,6 @@
 package io.github.arnabmaji19.libera.desktop;
 
-import io.github.arnabmaji19.libera.desktop.datasource.RestConfig;
+import io.github.arnabmaji19.libera.desktop.datasource.HttpRequest;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -33,7 +33,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("librarian_panel"));
+        scene = new Scene(loadFXML("librarian_auth"));
         stage.setScene(scene);
         var jMetro = new JMetro(Style.LIGHT);
         jMetro.setScene(scene);
@@ -43,6 +43,6 @@ public class App extends Application {
     @Override
     public void stop() throws Exception {
         super.stop();
-        RestConfig.getClient().close();
+        HttpRequest.getClient().close();
     }
 }

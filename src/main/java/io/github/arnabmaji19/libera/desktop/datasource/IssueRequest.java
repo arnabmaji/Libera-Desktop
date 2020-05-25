@@ -1,24 +1,17 @@
 package io.github.arnabmaji19.libera.desktop.datasource;
 
-import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
-import org.asynchttpclient.AsyncHttpClient;
 import org.asynchttpclient.util.HttpConstants;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-public class IssueRequest {
+public class IssueRequest extends HttpRequest {
 
     private static final IssueRequest instance = new IssueRequest();
-    private static final String ROUTE = "issues/";
-
-    private final AsyncHttpClient client;
-    private final Gson gson;
 
     private IssueRequest() {
-        this.client = RestConfig.getClient();
-        this.gson = new Gson();
+        setRoute("issues/");
     }
 
     public static IssueRequest getInstance() {
@@ -30,10 +23,10 @@ public class IssueRequest {
          * Make an http post request to check out the added holdings for a user
          */
 
-        var url = RestConfig.getBaseUrl() + ROUTE;
+        var url = getBaseUrl() + getRoute();
         var body = new RequestBody(userId, holdingNumbers);
-        var jsonBody = gson.toJson(body);
-        return client
+        var jsonBody = getGson().toJson(body);
+        return getClient()
                 .preparePost(url)
                 .setHeader("Content-Type", "application/json")
                 .setBody(jsonBody)

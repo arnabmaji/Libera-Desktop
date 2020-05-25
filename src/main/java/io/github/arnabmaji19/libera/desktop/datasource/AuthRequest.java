@@ -1,24 +1,16 @@
 package io.github.arnabmaji19.libera.desktop.datasource;
 
-import com.google.gson.Gson;
 import io.github.arnabmaji19.libera.desktop.model.User;
-import org.asynchttpclient.AsyncHttpClient;
 import org.asynchttpclient.util.HttpConstants;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 
-public class AuthRequest {
+public class AuthRequest extends HttpRequest {
 
     private final static AuthRequest instance = new AuthRequest();
 
-    private final String ROUTE = "auth/";
-    private final AsyncHttpClient client;
-    private final Gson gson;
-
     private AuthRequest() {
-        this.client = RestConfig.getClient();
-        this.gson = new Gson();
+        setRoute("auth/");
     }
 
     public static AuthRequest getInstance() {
@@ -30,34 +22,28 @@ public class AuthRequest {
          * Make an http post request to server for authenticating different types for users
          */
 
-        return CompletableFuture.supplyAsync(() -> {
+        // determine auth type
+        String endPoint = authType.equals(AuthType.LIBRARIAN) ? "librarian" : "user";
+        String url = getBaseUrl() + getRoute() + endPoint;
 
-            // determine auth type
-            String endPoint = authType.equals(AuthType.LIBRARIAN) ? "librarian" : "user";
-            String url = RestConfig.getBaseUrl() + ROUTE + endPoint;
+        return getClient()
+                .preparePost(url)
+                .addFormParam("email", email)
+                .addFormParam("password", password)
+                .execute()
+                .toCompletableFuture()
+                .thenApplyAsync(this::parseResponse);
 
-            try {
+    }
 
-                var future = client
-                        .preparePost(url)
-                        .addFormParam("email", email)
-                        .addFormParam("password", password)
-                        .execute();
-
-                var response = future.get();
-                User user = null;
-                String authToken = null;
-                if (response.getStatusCode() == HttpConstants.ResponseStatusCodes.OK_200) {
-                    user = gson.fromJson(response.getResponseBody(), User.class);
-                    authToken = response.getHeader("x-auth-token");
-                }
-                return new Response(response.getStatusCode(), user, authToken);
-
-            } catch (InterruptedException | ExecutionException e) {
-                e.printStackTrace();
-            }
-            return null;
-        });
+    private Response parseResponse(org.asynchttpclient.Response response) {
+        User user = null;
+        String authToken = null;
+        if (response.getStatusCode() == HttpConstants.ResponseStatusCodes.OK_200) {
+            user = getGson().fromJson(response.getResponseBody(), User.class);
+            authToken = response.getHeader("x-auth-token");
+        }
+        return new Response(response.getStatusCode(), user, authToken);
     }
 
     public enum AuthType {LIBRARIAN, USER}
