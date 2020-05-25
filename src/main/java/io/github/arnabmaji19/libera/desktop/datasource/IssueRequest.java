@@ -9,9 +9,11 @@ import java.util.concurrent.CompletableFuture;
 public class IssueRequest extends HttpRequest {
 
     private static final IssueRequest instance = new IssueRequest();
+    private final String url;
 
     private IssueRequest() {
         setRoute("issues/");
+        this.url = getBaseUrl() + getRoute();
     }
 
     public static IssueRequest getInstance() {
@@ -23,7 +25,6 @@ public class IssueRequest extends HttpRequest {
          * Make an http post request to check out the added holdings for a user
          */
 
-        var url = getBaseUrl() + getRoute();
         var body = new RequestBody(userId, holdingNumbers);
         var jsonBody = getGson().toJson(body);
         return getClient()
@@ -34,6 +35,19 @@ public class IssueRequest extends HttpRequest {
                 .toCompletableFuture()
                 .thenApplyAsync(response -> response.getStatusCode() == HttpConstants.ResponseStatusCodes.OK_200);
 
+    }
+
+    public CompletableFuture<Boolean> returnHolding(int holdingNumber) {
+        /*
+         * Make an http put request to return the holding
+         */
+
+        var urlWithParam = url + holdingNumber;
+        return getClient()
+                .preparePut(urlWithParam)
+                .execute()
+                .toCompletableFuture()
+                .thenApplyAsync(response -> response.getStatusCode() == HttpConstants.ResponseStatusCodes.OK_200);
     }
 
     private static class RequestBody {
