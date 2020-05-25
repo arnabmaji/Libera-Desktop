@@ -1,6 +1,8 @@
 package io.github.arnabmaji19.libera.desktop.controller;
 
+import io.github.arnabmaji19.libera.desktop.datasource.IssueRequest;
 import io.github.arnabmaji19.libera.desktop.datasource.UserRequest;
+import io.github.arnabmaji19.libera.desktop.model.UserDetails;
 import io.github.arnabmaji19.libera.desktop.util.AlertDialog;
 import io.github.arnabmaji19.libera.desktop.util.Validations;
 import javafx.application.Platform;
@@ -12,6 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class IssueBooksController implements Initializable {
@@ -40,6 +43,7 @@ public class IssueBooksController implements Initializable {
     private ImageView checkoutLoadingAnimation;
 
     private AlertDialog alertDialog;
+    private UserDetails user;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -75,7 +79,7 @@ public class IssueBooksController implements Initializable {
 
         fetchUserLoadingAnimation.setVisible(true);  // show the loading animation
 
-        // Make http request to fetch use by email
+        // Make an  http request to fetch user by email
         UserRequest
                 .getInstance()
                 .getByEmail(email)
@@ -87,8 +91,8 @@ public class IssueBooksController implements Initializable {
                         alertDialog.show("Email not registered with us!");
                         return;
                     }
-
-                    // otherwise user fields in the form
+                    this.user = user;
+                    // otherwise, update user fields in the form
                     firstNameTextField.setText(user.getFirstName());
                     lastNameTextField.setText(user.getLastName());
                     phoneTextField.setText(user.getPhone());
@@ -99,7 +103,30 @@ public class IssueBooksController implements Initializable {
 
 
                 }));
+    }
 
+    @FXML
+    private void checkout() {
+        /*
+         * Checkout the added holdings for the user
+         */
+        List<Integer> addedHoldings = addedHoldingsListView.getItems();
+        if (addedHoldings.isEmpty()) {
+            alertDialog.show("Cart is Empty");
+            return;
+        }
+
+        checkoutLoadingAnimation.setVisible(true);  // show check out loading animation
+
+        // Make an http request to check out holdings
+        IssueRequest
+                .getInstance()
+                .checkout(user.getId(), addedHoldings)
+                .thenAcceptAsync(success -> Platform.runLater(() -> {
+                    alertDialog.show(success ? "Successful!" : "Something went wrong!");
+                    checkoutLoadingAnimation.setVisible(false);
+
+                }));
 
     }
 }

@@ -85,7 +85,8 @@
                     <Image url="@../images/loading.gif"/>
                 </ImageView>
                 <Button
-                        text="Checkout"/>
+                        text="Checkout"
+                        onAction="#checkout"/>
             </HBox>
         </VBox>
     </HBox>
