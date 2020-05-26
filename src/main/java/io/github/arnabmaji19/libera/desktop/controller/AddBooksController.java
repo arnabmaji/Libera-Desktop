@@ -46,31 +46,10 @@ public class AddBooksController implements Initializable {
         this.alertDialog = new AlertDialog();
         this.stage = new Stage();
         this.stage.initModality(Modality.APPLICATION_MODAL);
+        this.stage.setOnHiding(windowEvent -> updateComboboxSuggestions());
         this.jMetro = new JMetro();
 
-        // fetch authors for combobox
-        var fetchAuthors = AuthorRequest
-                .getInstance()
-                .get()
-                .thenAcceptAsync(authors -> authorComboBox
-                        .setItems(FXCollections.observableArrayList(authors))
-                );
-
-        // fetch publishers for combobox
-        var fetchPublishers = PublisherRequest
-                .getInstance()
-                .get()
-                .thenAcceptAsync(publishers -> publisherComboBox
-                        .setItems(FXCollections.observableArrayList(publishers))
-                );
-
-        // populate author and publisher combobox with data
-        CompletableFuture
-                .allOf(fetchAuthors, fetchPublishers)
-                .thenRun(() -> Platform.runLater(() -> {
-                    new AutoCompleteComboBoxListener<Author>(authorComboBox);
-                    new AutoCompleteComboBoxListener<Publisher>(publisherComboBox);
-                }));
+        updateComboboxSuggestions();
 
     }
 
@@ -134,5 +113,36 @@ public class AddBooksController implements Initializable {
         jMetro.setScene(scene);
         stage.setScene(scene);
         stage.show();
+    }
+
+    private void updateComboboxSuggestions() {
+
+        /*
+         * Update suggestion List for author and publisher combobox
+         */
+
+        // fetch authors for combobox
+        var fetchAuthors = AuthorRequest
+                .getInstance()
+                .get()
+                .thenAcceptAsync(authors -> authorComboBox
+                        .setItems(FXCollections.observableArrayList(authors))
+                );
+
+        // fetch publishers for combobox
+        var fetchPublishers = PublisherRequest
+                .getInstance()
+                .get()
+                .thenAcceptAsync(publishers -> publisherComboBox
+                        .setItems(FXCollections.observableArrayList(publishers))
+                );
+
+        // populate author and publisher combobox with data
+        CompletableFuture
+                .allOf(fetchAuthors, fetchPublishers)
+                .thenRun(() -> Platform.runLater(() -> {
+                    new AutoCompleteComboBoxListener<Author>(authorComboBox);
+                    new AutoCompleteComboBoxListener<Publisher>(publisherComboBox);
+                }));
     }
 }
