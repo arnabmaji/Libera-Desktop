@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
@@ -17,16 +17,21 @@
            AnchorPane.topAnchor="14.0"/>
     <HBox alignment="CENTER_LEFT" spacing="5" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="64.0">
         <TextField fx:id="searchStringTextField" styleClass="form-control"/>
-        <ImageView pickOnBounds="true" preserveRatio="true" onMouseClicked="#search">
+        <ImageView onMouseClicked="#search" pickOnBounds="true" preserveRatio="true">
             <Image url="@../images/search.png"/>
         </ImageView>
         <ImageView fx:id="loadingImageView" pickOnBounds="true" preserveRatio="true" visible="false">
             <Image url="@../images/loading.gif"/>
         </ImageView>
     </HBox>
-    <TableView layoutX="202.0" layoutY="117.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="30.0"
-               AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="115.0"
-               fx:id="booksTableView">
+    <Button text="Holdings" layoutY="83.0"
+            mnemonicParsing="false"
+            defaultButton="true"
+            AnchorPane.rightAnchor="16.0"
+            AnchorPane.topAnchor="70.0"
+            onAction="#showHoldings"/>
+    <TableView fx:id="booksTableView" layoutX="202.0" layoutY="117.0" AnchorPane.bottomAnchor="16.0"
+               AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="16.0" AnchorPane.topAnchor="115.0">
         <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
         </columnResizePolicy>
@@ -36,7 +41,7 @@
                     <PropertyValueFactory property="id"/>
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn text="Title" minWidth="150">
+            <TableColumn minWidth="150" text="Title">
                 <cellValueFactory>
                     <PropertyValueFactory property="title"/>
                 </cellValueFactory>
