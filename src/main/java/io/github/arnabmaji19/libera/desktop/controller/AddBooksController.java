@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
@@ -35,6 +36,8 @@ public class AddBooksController implements Initializable {
     private ComboBox<Publisher> publisherComboBox;
     @FXML
     private TextField yearPublishedTextField;
+    @FXML
+    private ImageView loadingImageView;
 
     private AlertDialog alertDialog;
     private Stage stage;
@@ -66,11 +69,27 @@ public class AddBooksController implements Initializable {
             alertDialog.show(errorMessage);
             return;
         }
+
+        loadingImageView.setVisible(true);  // show the loading animation
+
         // make an http request to add new book
         BookRequest
                 .getInstance()
                 .add(title, author, publisher, yearPublished)
-                .thenAccept(success -> Platform.runLater(() -> alertDialog.show(success ? "Successful!" : "Something went wrong!")));
+                .thenAccept(successful -> Platform.runLater(() -> {
+                    loadingImageView.setVisible(false);  // hide the loading animation
+                    String message;
+                    if (successful) {
+                        message = "Successful!";
+
+                        // clear all form fields
+                        titleTextField.clear();
+                        authorComboBox.getSelectionModel().clearSelection();
+                        publisherComboBox.getSelectionModel().clearSelection();
+                        yearPublishedTextField.clear();
+                    } else message = "Oops! Something went wrong!";
+                    alertDialog.show(message);
+                }));
     }
 
     private String validateFields(String title,

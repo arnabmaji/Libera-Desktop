@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0"
@@ -41,7 +40,13 @@
             <Label text="Year Published"/>
             <TextField fx:id="yearPublishedTextField" styleClass="form-control"/>
         </VBox>
-        <Button onAction="#addNewBook" text="Add Book" GridPane.columnIndex="0" GridPane.halignment="RIGHT"
-                GridPane.rowIndex="4"/>
+        <HBox GridPane.columnIndex="0"
+              GridPane.rowIndex="4"
+              alignment="TOP_RIGHT" spacing="8">
+            <ImageView fx:id="loadingImageView" pickOnBounds="true" preserveRatio="true" visible="false">
+                <Image url="@../images/loading.gif"/>
+            </ImageView>
+            <Button onAction="#addNewBook" text="Add Book"/>
+        </HBox>
     </GridPane>
 </AnchorPane>
