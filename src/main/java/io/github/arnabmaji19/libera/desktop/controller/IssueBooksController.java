@@ -22,7 +22,7 @@ public class IssueBooksController implements Initializable {
     @FXML
     private TextField emailTextField;
     @FXML
-    private ImageView fetchUserLoadingAnimation;
+    private ImageView loadingImageView;
     @FXML
     private VBox userDetailsForm;
     @FXML
@@ -39,8 +39,6 @@ public class IssueBooksController implements Initializable {
     private TextField holdingNumberTextField;
     @FXML
     private ListView<Integer> addedHoldingsListView;
-    @FXML
-    private ImageView checkoutLoadingAnimation;
 
     private AlertDialog alertDialog;
     private UserDetails user;
@@ -77,7 +75,7 @@ public class IssueBooksController implements Initializable {
             return;
         }
 
-        fetchUserLoadingAnimation.setVisible(true);  // show the loading animation
+        loadingImageView.setVisible(true);  // show the loading animation
 
         // Make an  http request to fetch user by email
         UserRequest
@@ -85,7 +83,7 @@ public class IssueBooksController implements Initializable {
                 .getByEmail(email)
                 .thenAcceptAsync(user -> Platform.runLater(() -> {
 
-                    fetchUserLoadingAnimation.setVisible(false);  // hide the loading image
+                    loadingImageView.setVisible(false);  // hide the loading image
                     // if user is not found show error message
                     if (user == null) {
                         alertDialog.show("Email not registered with us!");
@@ -116,7 +114,7 @@ public class IssueBooksController implements Initializable {
             return;
         }
 
-        checkoutLoadingAnimation.setVisible(true);  // show check out loading animation
+        loadingImageView.setVisible(true);  // show check out loading animation
 
         // Make an http request to check out holdings
         IssueRequest
@@ -124,7 +122,7 @@ public class IssueBooksController implements Initializable {
                 .checkout(user.getId(), addedHoldings)
                 .thenAcceptAsync(success -> Platform.runLater(() -> {
                     alertDialog.show(success ? "Successful!" : "Something went wrong!");
-                    checkoutLoadingAnimation.setVisible(false);
+                    loadingImageView.setVisible(false);
 
                 }));
 

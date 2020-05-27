@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" prefHeight="600.0" prefWidth="800.0"
@@ -21,31 +19,18 @@
                         prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn" text="Add Books"/>
                 <Button fx:id="searchBooksButton" mnemonicParsing="false" onAction="#navigate"
                         prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn" text="Search Books"/>
-                <Button fx:id="addHoldingsButton" mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}"
-                        styleClass="tab-btn"
-                        text="Add Holdings" onAction="#navigate"/>
-                <Button fx:id="removeHoldingsButton" mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}"
-                        styleClass="tab-btn"
-                        text="Remove Holdings" onAction="#navigate"/>
-                <Button fx:id="issueBooksButton" mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}"
-                        styleClass="tab-btn"
-                        text="Issue Books" onAction="#navigate"/>
-                <Button fx:id="returnBooksButton" mnemonicParsing="false" prefWidth="${buttonContainer.prefWidth}"
-                        styleClass="tab-btn"
-                        text="Return Books" onAction="#navigate"/>
+                <Button fx:id="addHoldingsButton" mnemonicParsing="false" onAction="#navigate"
+                        prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn" text="Add Holdings"/>
+                <Button fx:id="removeHoldingsButton" mnemonicParsing="false" onAction="#navigate"
+                        prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn" text="Remove Holdings"/>
+                <Button fx:id="issueBooksButton" mnemonicParsing="false" onAction="#navigate"
+                        prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn" text="Issue Books"/>
+                <Button fx:id="returnBooksButton" mnemonicParsing="false" onAction="#navigate"
+                        prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn" text="Return Books"/>
             </VBox>
         </AnchorPane>
     </left>
-    <top>
-        <AnchorPane prefHeight="40.0" prefWidth="476.0" style="-fx-background-color: #4C4A48;"
-                    BorderPane.alignment="CENTER">
-            <ImageView layoutX="10.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true"
-                       AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="4.0">
-                <Image url="@../images/home.png"/>
-            </ImageView>
-        </AnchorPane>
-    </top>
     <center>
-        <AnchorPane BorderPane.alignment="CENTER" fx:id="pane"/>
+        <AnchorPane fx:id="pane" BorderPane.alignment="CENTER"/>
     </center>
 </BorderPane>
