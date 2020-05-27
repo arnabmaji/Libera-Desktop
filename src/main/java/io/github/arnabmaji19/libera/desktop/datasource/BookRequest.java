@@ -44,7 +44,7 @@ public class BookRequest extends HttpRequest {
         /*
          * Make an http request to fetch books with given keyword
          */
-        var url = getBaseUrl() + getRoute() + "/search";
+        var url = getBaseUrl() + getRoute() + "search";
         return getClient()
                 .prepareGet(url)
                 .addQueryParam("keyword", keyword)
@@ -52,6 +52,28 @@ public class BookRequest extends HttpRequest {
                 .toCompletableFuture()
                 .thenApplyAsync(this::parseResponse);
     }
+
+    public CompletableFuture<List<Integer>> getHoldings(ListType listType, int bookId) {
+        /*
+         *   Fetch all holdings for a book according to required list,
+         *   ListType.AVAILABLE: Fetch all available holdings for a book
+         *   ListType.ISSUED: Fetch all issued holdings for a book
+         */
+
+        var subRoute = listType.equals(ListType.AVAILABLE) ? "available/" : "issues/";
+        var url = getBaseUrl() + getRoute() + subRoute + bookId;
+        return getClient()
+                .prepareGet(url)
+                .execute()
+                .toCompletableFuture()
+                .thenApplyAsync(response -> {
+                    Type responseListType = new TypeToken<List<Integer>>() {
+                    }.getType();
+                    return getGson().fromJson(response.getResponseBody(), responseListType);
+                });
+    }
+
+    public enum ListType {AVAILABLE, ISSUED}
 
     private List<Book> parseResponse(Response response) {
         Type listType = new TypeToken<List<Book>>() {
