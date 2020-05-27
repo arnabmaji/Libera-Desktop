@@ -24,6 +24,8 @@ public class LibrarianPanelController {
     private Button issueBooksButton;
     @FXML
     private Button returnBooksButton;
+    @FXML
+    private Button viewLibrariansButton;
 
     @FXML
     private void navigate(ActionEvent e) throws IOException {
@@ -36,6 +38,7 @@ public class LibrarianPanelController {
         else if (source.equals(removeHoldingsButton)) fxml = "remove_holdings";
         else if (source.equals(issueBooksButton)) fxml = "issue_books";
         else if (source.equals(returnBooksButton)) fxml = "return_books";
+        else if (source.equals(viewLibrariansButton)) fxml = "view_librarians";
 
         var child = App.loadFXML(fxml);
         // set anchors for the child
