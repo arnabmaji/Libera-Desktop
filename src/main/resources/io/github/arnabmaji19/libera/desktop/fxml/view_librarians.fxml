@@ -27,6 +27,10 @@
                 defaultButton="true"
                 onAction="#addLibrarian"/>
         <Button
+                text="Delete"
+                defaultButton="true"
+                onAction="#deleteLibrarian"/>
+        <Button
                 text="Refresh"
                 defaultButton="true" onAction="#refreshTableData"/>
     </HBox>

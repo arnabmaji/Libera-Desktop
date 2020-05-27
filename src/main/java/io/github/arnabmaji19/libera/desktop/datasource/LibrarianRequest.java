@@ -33,6 +33,18 @@ public class LibrarianRequest extends EntityRequest<LibrarianDetails> {
                 .thenApplyAsync(response -> response.getStatusCode() == HttpConstants.ResponseStatusCodes.OK_200);
     }
 
+    public CompletableFuture<Boolean> delete(int id) {
+        /*
+         * Make an http delete request to delete a librarian
+         */
+        var urlWithParam = getBaseUrl() + getRoute() + id;
+        return getClient()
+                .prepareDelete(urlWithParam)
+                .execute()
+                .toCompletableFuture()
+                .thenApplyAsync(response -> response.getStatusCode() == HttpConstants.ResponseStatusCodes.OK_200);
+    }
+
     public static LibrarianRequest getInstance() {
         return instance;
     }
