@@ -1,12 +1,15 @@
 package io.github.arnabmaji19.libera.desktop.datasource;
 
+import com.google.gson.reflect.TypeToken;
 import io.github.arnabmaji19.libera.desktop.model.UserDetails;
 import org.asynchttpclient.Response;
 import org.asynchttpclient.util.HttpConstants;
 
+import java.lang.reflect.Type;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-public class UserRequest extends HttpRequest {
+public class UserRequest extends EntityRequest<UserDetails> {
 
     private static final UserRequest instance = new UserRequest();
 
@@ -28,15 +31,21 @@ public class UserRequest extends HttpRequest {
                 .prepareGet(urlWithParams)
                 .execute()
                 .toCompletableFuture()
-                .thenApplyAsync(this::parseResponse);
+                .thenApplyAsync(response -> {
+                    if (response.getStatusCode() != HttpConstants.ResponseStatusCodes.OK_200)
+                        return null;
+                    return getGson().fromJson(response.getResponseBody(), UserDetails.class);
+                });
     }
 
-    private UserDetails parseResponse(Response response) {
+    @Override
+    public List<UserDetails> parseResponse(Response response) {
         /*
-         * Parse response to suitable java object
+         * Parse response to suitable a list of user details
          */
-        if (response.getStatusCode() != HttpConstants.ResponseStatusCodes.OK_200)
-            return null;
-        return getGson().fromJson(response.getResponseBody(), UserDetails.class);
+        Type listType = new TypeToken<List<UserDetails>>() {
+        }.getType();
+        return getGson().fromJson(response.getResponseBody(), listType);
+
     }
 }
