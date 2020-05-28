@@ -47,10 +47,11 @@ public class AddLibrarianController {
         var address = addressTextField.getText();
 
         // validate form parameters
-        var errorMessage = validateFormParameters(firstName, lastName, email, phone, password, address);
+        var errorMessage = validateFormParameters(firstName, lastName, email, password, phone, address);
         if (!errorMessage.isBlank()) {  // show error message if any
             if (alertDialog == null) alertDialog = new AlertDialog();
             alertDialog.show(errorMessage);
+            return;
         }
 
         loadingImageView.setVisible(true);  // show the loading image
@@ -107,7 +108,11 @@ public class AddLibrarianController {
 
         if (!Validations.isEmailValid(email)) return "Email not valid!";
 
-        if (password.length() < 4) return "Password must be of 4 characters!";
+        if (password.length() < 4) return "Password must be at least of 4 characters!";
+
+        if (phone.length() < 10 || phone.length() > 15) return "Phone must be between\n10 to 15 characters!";
+
+        if (address.length() < 4) return "Address must be\nat least 4 characters long!";
 
         return "";
     }

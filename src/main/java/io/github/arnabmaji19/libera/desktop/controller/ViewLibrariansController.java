@@ -95,7 +95,7 @@ public class ViewLibrariansController implements Initializable {
         }
 
         // show confirmation dialog
-        confirmationAlert.setContentText("Do Sure You Want to Delete " + librarian.getEmail() + " ?");
+        confirmationAlert.setContentText("Do You Want to Delete\n" + librarian.getEmail() + " ?");
         var selectedButton = confirmationAlert.showAndWait();
         if (selectedButton.isEmpty() || selectedButton.get().equals(ButtonType.CANCEL)) return;
 
