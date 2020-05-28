@@ -67,7 +67,6 @@ public class IssueRequest extends HttpRequest {
                     // parse response to a list of IssuedBook
                     Type listType = new TypeToken<List<IssuedBook>>() {
                     }.getType();
-                    System.out.println(response.getResponseBody());
                     return getGson().fromJson(response.getResponseBody(), listType);
 
                 });

@@ -31,7 +31,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
         </columnResizePolicy>
         <columns>
-            <TableColumn text="Book">
+            <TableColumn text="Book" minWidth="400">
                 <cellValueFactory>
                     <PropertyValueFactory property="book"/>
                 </cellValueFactory>

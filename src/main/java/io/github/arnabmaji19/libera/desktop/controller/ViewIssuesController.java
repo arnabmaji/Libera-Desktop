@@ -1,7 +1,10 @@
 package io.github.arnabmaji19.libera.desktop.controller;
 
+import io.github.arnabmaji19.libera.desktop.datasource.IssueRequest;
 import io.github.arnabmaji19.libera.desktop.model.IssuedBook;
 import io.github.arnabmaji19.libera.desktop.model.UserDetails;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -30,6 +33,17 @@ public class ViewIssuesController implements Initializable {
         // update labels
         userNameLabel.setText(user.getFirstName() + " " + user.getLastName());
         emailLabel.setText(user.getEmail());
+
+        loadingImageView.setVisible(true);
+
+        // make an http request to populate table data
+        IssueRequest
+                .getInstance()
+                .getIssuesForUser(user.getId())
+                .thenAcceptAsync(issuedBooks -> Platform.runLater(() -> {
+                    issuedBooksTableView.setItems(FXCollections.observableArrayList(issuedBooks));
+                    loadingImageView.setVisible(false);
+                }));
     }
 
     public void init(UserDetails userDetails) {
