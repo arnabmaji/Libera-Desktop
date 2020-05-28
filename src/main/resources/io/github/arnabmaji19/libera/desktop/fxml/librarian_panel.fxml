@@ -29,8 +29,8 @@
                         prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn" text="Return Books"/>
                 <Button fx:id="viewLibrariansButton" mnemonicParsing="false" onAction="#navigate"
                         prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn" text="View Librarians"/>
-                <Button mnemonicParsing="false" onAction="#navigate"
-                        prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn" text="View Customers"/>
+                <Button fx:id="viewUsersButton" mnemonicParsing="false" onAction="#navigate"
+                        prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn" text="View Users"/>
             </VBox>
         </AnchorPane>
     </left>
