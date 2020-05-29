@@ -1,7 +1,7 @@
 package io.github.arnabmaji19.libera.desktop.datasource;
 
 import com.google.gson.reflect.TypeToken;
-import io.github.arnabmaji19.libera.desktop.model.UserDetails;
+import io.github.arnabmaji19.libera.desktop.model.User;
 import org.asynchttpclient.Response;
 import org.asynchttpclient.util.HttpConstants;
 
@@ -9,7 +9,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-public class UserRequest extends EntityRequest<UserDetails> {
+public class UserRequest extends EntityRequest<User> {
 
     private static final UserRequest instance = new UserRequest();
 
@@ -21,7 +21,7 @@ public class UserRequest extends EntityRequest<UserDetails> {
         return instance;
     }
 
-    public CompletableFuture<UserDetails> getByEmail(String email) {
+    public CompletableFuture<User> getByEmail(String email) {
         /*
          * Make an http get request to fetch user by email
          */
@@ -34,16 +34,16 @@ public class UserRequest extends EntityRequest<UserDetails> {
                 .thenApplyAsync(response -> {
                     if (response.getStatusCode() != HttpConstants.ResponseStatusCodes.OK_200)
                         return null;
-                    return getGson().fromJson(response.getResponseBody(), UserDetails.class);
+                    return getGson().fromJson(response.getResponseBody(), User.class);
                 });
     }
 
     @Override
-    public List<UserDetails> parseResponse(Response response) {
+    public List<User> parseResponse(Response response) {
         /*
          * Parse response to suitable a list of user details
          */
-        Type listType = new TypeToken<List<UserDetails>>() {
+        Type listType = new TypeToken<List<User>>() {
         }.getType();
         return getGson().fromJson(response.getResponseBody(), listType);
 

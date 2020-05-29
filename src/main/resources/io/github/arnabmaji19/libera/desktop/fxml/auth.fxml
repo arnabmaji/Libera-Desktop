@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.net.URL?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="600" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            fx:controller="io.github.arnabmaji19.libera.desktop.controller.AuthController">
+    <stylesheets>
+        <URL value="@../css/style.css"/>
+    </stylesheets>
+
+    <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+          AnchorPane.topAnchor="0.0">
+        <VBox alignment="CENTER" style="-fx-background-color: #0078D7">
+            <padding>
+                <Insets left="16" right="16"/>
+            </padding>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../images/icon.png"/>
+            </ImageView>
+            <Text style="-fx-fill: #fff" styleClass="h1" text="Libera"/>
+            <Text style="-fx-fill: #fff" styleClass="h3" text="Modern Library Management System"/>
+        </VBox>
+        <VBox alignment="CENTER" prefWidth="400" spacing="8">
+            <padding>
+                <Insets left="16" right="16"/>
+            </padding>
+            <VBox spacing="8">
+                <Text styleClass="h1" text="Hi, there!"/>
+                <Text styleClass="h3" text="Email"/>
+                <TextField fx:id="emailTextField" styleClass="form-control"/>
+                <Text styleClass="h3" text="Password"/>
+                <PasswordField fx:id="passwordField" styleClass="form-control"/>
+                <HBox alignment="CENTER_RIGHT">
+                    <Button defaultButton="true" onAction="#authenticate" text="Log In"/>
+                </HBox>
+                <VBox alignment="CENTER">
+                    <padding>
+                        <Insets top="20"/>
+                    </padding>
+                    <Button fx:id="authToggleButton" text="Switch to User Auth" onAction="#toggleAuthType"
+                            style="-fx-background-color: transparent"/>
+                </VBox>
+                <ProgressBar fx:id="progressbar" visible="false"/>
+            </VBox>
+        </VBox>
+    </HBox>
+</AnchorPane>

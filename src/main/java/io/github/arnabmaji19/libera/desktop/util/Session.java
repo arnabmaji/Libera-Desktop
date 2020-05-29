@@ -1,12 +1,12 @@
 package io.github.arnabmaji19.libera.desktop.util;
 
-import io.github.arnabmaji19.libera.desktop.model.User;
+import io.github.arnabmaji19.libera.desktop.model.UserAuthDetails;
 
 public class Session {
 
     private static final Session instance = new Session();
 
-    private User user;
+    private UserAuthDetails userAuthDetails;
     private String authToken;
 
     private Session() {
@@ -16,22 +16,22 @@ public class Session {
         return instance;
     }
 
-    public void create(User user, String authToken) {
-        this.user = user;
+    public void create(UserAuthDetails userAuthDetails, String authToken) {
+        this.userAuthDetails = userAuthDetails;
         this.authToken = authToken;
     }
 
     public boolean isAvailable() {
-        return user != null;
+        return userAuthDetails != null;
     }
 
     public void clear() {
-        this.user = null;
+        this.userAuthDetails = null;
         this.authToken = "";
     }
 
-    public User getUser() {
-        return user;
+    public UserAuthDetails getUserAuthDetails() {
+        return userAuthDetails;
     }
 
     public String getAuthToken() {

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import java.net.URL?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/10.0.2-internal"
+            fx:controller="io.github.arnabmaji19.libera.desktop.controller.UserPanelController">
+
+    <stylesheets>
+        <URL value="@../css/style.css"/>
+    </stylesheets>
+
+    <Label layoutX="14.0" layoutY="14.0" text="User Panel" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="14.0"
+           styleClass="h1"/>
+</AnchorPane>

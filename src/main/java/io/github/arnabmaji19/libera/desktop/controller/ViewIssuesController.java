@@ -2,7 +2,7 @@ package io.github.arnabmaji19.libera.desktop.controller;
 
 import io.github.arnabmaji19.libera.desktop.datasource.IssueRequest;
 import io.github.arnabmaji19.libera.desktop.model.IssuedBook;
-import io.github.arnabmaji19.libera.desktop.model.UserDetails;
+import io.github.arnabmaji19.libera.desktop.model.User;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -25,7 +25,7 @@ public class ViewIssuesController implements Initializable {
     @FXML
     private TableView<IssuedBook> issuedBooksTableView;
 
-    private UserDetails user;
+    private User user;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -46,7 +46,7 @@ public class ViewIssuesController implements Initializable {
                 }));
     }
 
-    public void init(UserDetails userDetails) {
-        this.user = userDetails;
+    public void init(User user) {
+        this.user = user;
     }
 }

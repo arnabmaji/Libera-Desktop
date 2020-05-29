@@ -1,6 +1,6 @@
 package io.github.arnabmaji19.libera.desktop.datasource;
 
-import io.github.arnabmaji19.libera.desktop.model.User;
+import io.github.arnabmaji19.libera.desktop.model.UserAuthDetails;
 import org.asynchttpclient.util.HttpConstants;
 
 import java.util.concurrent.CompletableFuture;
@@ -22,7 +22,6 @@ public class AuthRequest extends HttpRequest {
          * Make an http post request to server for authenticating different types for users
          */
 
-        // determine auth type
         String endPoint = authType.equals(AuthType.LIBRARIAN) ? "librarian" : "user";
         String url = getBaseUrl() + getRoute() + endPoint;
 
@@ -37,13 +36,13 @@ public class AuthRequest extends HttpRequest {
     }
 
     private Response parseResponse(org.asynchttpclient.Response response) {
-        User user = null;
+        UserAuthDetails userAuthDetails = null;
         String authToken = null;
         if (response.getStatusCode() == HttpConstants.ResponseStatusCodes.OK_200) {
-            user = getGson().fromJson(response.getResponseBody(), User.class);
+            userAuthDetails = getGson().fromJson(response.getResponseBody(), UserAuthDetails.class);
             authToken = response.getHeader("x-auth-token");
         }
-        return new Response(response.getStatusCode(), user, authToken);
+        return new Response(response.getStatusCode(), userAuthDetails, authToken);
     }
 
     public enum AuthType {LIBRARIAN, USER}
@@ -52,12 +51,12 @@ public class AuthRequest extends HttpRequest {
     public static class Response {
 
         private int statusCode;
-        private User user;
+        private UserAuthDetails userAuthDetails;
         private String authToken;
 
-        public Response(int statusCode, User user, String authToken) {
+        public Response(int statusCode, UserAuthDetails userAuthDetails, String authToken) {
             this.statusCode = statusCode;
-            this.user = user;
+            this.userAuthDetails = userAuthDetails;
             this.authToken = authToken;
         }
 
@@ -65,8 +64,8 @@ public class AuthRequest extends HttpRequest {
             return statusCode;
         }
 
-        public User getUser() {
-            return user;
+        public UserAuthDetails getUserAuthDetails() {
+            return userAuthDetails;
         }
 
         public String getAuthToken() {

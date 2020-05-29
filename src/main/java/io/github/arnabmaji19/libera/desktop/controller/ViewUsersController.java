@@ -2,7 +2,7 @@ package io.github.arnabmaji19.libera.desktop.controller;
 
 import io.github.arnabmaji19.libera.desktop.App;
 import io.github.arnabmaji19.libera.desktop.datasource.UserRequest;
-import io.github.arnabmaji19.libera.desktop.model.UserDetails;
+import io.github.arnabmaji19.libera.desktop.model.User;
 import io.github.arnabmaji19.libera.desktop.util.AlertDialog;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -20,7 +20,7 @@ public class ViewUsersController {
     @FXML
     private ImageView loadingImageView;
     @FXML
-    private TableView<UserDetails> usersTableView;
+    private TableView<User> usersTableView;
 
     private AlertDialog alertDialog;
     private Stage viewIssuesStage;

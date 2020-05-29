@@ -2,7 +2,7 @@ package io.github.arnabmaji19.libera.desktop.controller;
 
 import io.github.arnabmaji19.libera.desktop.datasource.IssueRequest;
 import io.github.arnabmaji19.libera.desktop.datasource.UserRequest;
-import io.github.arnabmaji19.libera.desktop.model.UserDetails;
+import io.github.arnabmaji19.libera.desktop.model.User;
 import io.github.arnabmaji19.libera.desktop.util.AlertDialog;
 import io.github.arnabmaji19.libera.desktop.util.Validations;
 import javafx.application.Platform;
@@ -41,7 +41,7 @@ public class IssueBooksController implements Initializable {
     private ListView<Integer> addedHoldingsListView;
 
     private AlertDialog alertDialog;
-    private UserDetails user;
+    private User user;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
