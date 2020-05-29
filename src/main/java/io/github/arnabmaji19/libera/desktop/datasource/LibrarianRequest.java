@@ -3,6 +3,7 @@ package io.github.arnabmaji19.libera.desktop.datasource;
 import com.google.gson.reflect.TypeToken;
 import io.github.arnabmaji19.libera.desktop.model.Librarian;
 import io.github.arnabmaji19.libera.desktop.model.LibrarianDetails;
+import io.github.arnabmaji19.libera.desktop.util.Session;
 import org.asynchttpclient.Response;
 import org.asynchttpclient.util.HttpConstants;
 
@@ -26,7 +27,8 @@ public class LibrarianRequest extends EntityRequest<LibrarianDetails> {
         var body = getGson().toJson(librarian);
         return getClient()
                 .preparePost(url)
-                .setHeader("Content-Type", "application/json")
+                .addHeader(getAuthTokenHeaderString(), Session.getInstance().getAuthToken())
+                .addHeader("Content-Type", "application/json")
                 .setBody(body)
                 .execute()
                 .toCompletableFuture()
@@ -40,6 +42,7 @@ public class LibrarianRequest extends EntityRequest<LibrarianDetails> {
         var urlWithParam = getBaseUrl() + getRoute() + id;
         return getClient()
                 .prepareDelete(urlWithParam)
+                .addHeader(getAuthTokenHeaderString(), Session.getInstance().getAuthToken())
                 .execute()
                 .toCompletableFuture()
                 .thenApplyAsync(response -> response.getStatusCode() == HttpConstants.ResponseStatusCodes.OK_200);

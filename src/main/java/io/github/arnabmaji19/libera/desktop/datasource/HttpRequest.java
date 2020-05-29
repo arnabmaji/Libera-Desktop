@@ -11,6 +11,7 @@ public abstract class HttpRequest {
 
     private static final String BASE_URL = "http://localhost:3000/api/";
     private static final AsyncHttpClient client = Dsl.asyncHttpClient();
+    private static final String AUTH_TOKEN_HEADER_STRING = "x-auth-token";
     private static final Gson gson = new Gson();
 
     private String route;
@@ -33,5 +34,9 @@ public abstract class HttpRequest {
 
     public void setRoute(String route) {
         this.route = route;
+    }
+
+    public static String getAuthTokenHeaderString() {
+        return AUTH_TOKEN_HEADER_STRING;
     }
 }

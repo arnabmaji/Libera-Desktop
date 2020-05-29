@@ -1,5 +1,6 @@
 package io.github.arnabmaji19.libera.desktop.datasource;
 
+import io.github.arnabmaji19.libera.desktop.util.Session;
 import org.asynchttpclient.Response;
 
 import java.util.List;
@@ -11,9 +12,11 @@ public abstract class EntityRequest<T> extends HttpRequest {
         /*
          * Make an http request for fetching all entries
          */
+
         var url = getBaseUrl() + getRoute();
         return getClient()
                 .prepareGet(url)
+                .addHeader(getAuthTokenHeaderString(), Session.getInstance().getAuthToken())
                 .execute()
                 .toCompletableFuture()
                 .thenApply(this::parseResponse);

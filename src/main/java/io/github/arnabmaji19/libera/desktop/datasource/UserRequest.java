@@ -2,6 +2,7 @@ package io.github.arnabmaji19.libera.desktop.datasource;
 
 import com.google.gson.reflect.TypeToken;
 import io.github.arnabmaji19.libera.desktop.model.User;
+import io.github.arnabmaji19.libera.desktop.util.Session;
 import org.asynchttpclient.Response;
 import org.asynchttpclient.util.HttpConstants;
 
@@ -29,6 +30,7 @@ public class UserRequest extends EntityRequest<User> {
         var urlWithParams = getBaseUrl() + getRoute() + email;
         return getClient()
                 .prepareGet(urlWithParams)
+                .addHeader(getAuthTokenHeaderString(), Session.getInstance().getAuthToken())
                 .execute()
                 .toCompletableFuture()
                 .thenApplyAsync(response -> {

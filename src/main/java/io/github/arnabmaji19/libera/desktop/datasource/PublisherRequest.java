@@ -2,6 +2,7 @@ package io.github.arnabmaji19.libera.desktop.datasource;
 
 import com.google.gson.reflect.TypeToken;
 import io.github.arnabmaji19.libera.desktop.model.Publisher;
+import io.github.arnabmaji19.libera.desktop.util.Session;
 import org.asynchttpclient.Response;
 import org.asynchttpclient.util.HttpConstants;
 
@@ -24,6 +25,7 @@ public class PublisherRequest extends EntityRequest<Publisher> {
         var url = getBaseUrl() + getRoute();
         return getClient()
                 .preparePost(url)
+                .addHeader(getAuthTokenHeaderString(), Session.getInstance().getAuthToken())
                 .addFormParam("name", name)
                 .execute()
                 .toCompletableFuture()

@@ -1,6 +1,7 @@
 package io.github.arnabmaji19.libera.desktop.datasource;
 
 import com.google.gson.reflect.TypeToken;
+import io.github.arnabmaji19.libera.desktop.util.Session;
 import org.asynchttpclient.Response;
 import org.asynchttpclient.util.HttpConstants;
 
@@ -29,6 +30,7 @@ public class HoldingRequest extends HttpRequest {
          */
         return getClient()
                 .preparePost(url)
+                .addHeader(getAuthTokenHeaderString(), Session.getInstance().getAuthToken())
                 .addFormParam("book_id", Integer.toString(bookId))
                 .addFormParam("items", Integer.toString(quantity))
                 .execute()
@@ -43,6 +45,7 @@ public class HoldingRequest extends HttpRequest {
         var urlWithParam = url + "/" + holdingNumber;
         return getClient()
                 .prepareDelete(urlWithParam)
+                .addHeader(getAuthTokenHeaderString(), Session.getInstance().getAuthToken())
                 .execute()
                 .toCompletableFuture()
                 .thenApplyAsync(response -> response.getStatusCode() == HttpConstants.ResponseStatusCodes.OK_200);

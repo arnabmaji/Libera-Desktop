@@ -2,6 +2,7 @@ package io.github.arnabmaji19.libera.desktop.datasource;
 
 import com.google.gson.reflect.TypeToken;
 import io.github.arnabmaji19.libera.desktop.model.Author;
+import io.github.arnabmaji19.libera.desktop.util.Session;
 import org.asynchttpclient.Response;
 import org.asynchttpclient.util.HttpConstants;
 
@@ -24,6 +25,7 @@ public class AuthorRequest extends EntityRequest<Author> {
         var url = getBaseUrl() + getRoute();
         return getClient()
                 .preparePost(url)
+                .addHeader(getAuthTokenHeaderString(), Session.getInstance().getAuthToken())
                 .addFormParam("first_name", firstName)
                 .addFormParam("last_name", lastName)
                 .execute()

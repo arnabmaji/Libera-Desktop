@@ -3,6 +3,7 @@ package io.github.arnabmaji19.libera.desktop.datasource;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 import io.github.arnabmaji19.libera.desktop.model.IssuedBook;
+import io.github.arnabmaji19.libera.desktop.util.Session;
 import org.asynchttpclient.util.HttpConstants;
 
 import java.lang.reflect.Type;
@@ -32,7 +33,8 @@ public class IssueRequest extends HttpRequest {
         var jsonBody = getGson().toJson(body);
         return getClient()
                 .preparePost(url)
-                .setHeader("Content-Type", "application/json")
+                .addHeader(getAuthTokenHeaderString(), Session.getInstance().getAuthToken())
+                .addHeader("Content-Type", "application/json")
                 .setBody(jsonBody)
                 .execute()
                 .toCompletableFuture()
@@ -48,6 +50,7 @@ public class IssueRequest extends HttpRequest {
         var urlWithParam = url + holdingNumber;
         return getClient()
                 .preparePut(urlWithParam)
+                .addHeader(getAuthTokenHeaderString(), Session.getInstance().getAuthToken())
                 .execute()
                 .toCompletableFuture()
                 .thenApplyAsync(response -> response.getStatusCode() == HttpConstants.ResponseStatusCodes.OK_200);
@@ -60,6 +63,7 @@ public class IssueRequest extends HttpRequest {
         var urlWithParam = url + "user/" + id;
         return getClient()
                 .prepareGet(urlWithParam)
+                .addHeader(getAuthTokenHeaderString(), Session.getInstance().getAuthToken())
                 .execute()
                 .toCompletableFuture()
                 .thenApplyAsync(response -> {

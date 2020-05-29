@@ -4,6 +4,7 @@ import com.google.gson.reflect.TypeToken;
 import io.github.arnabmaji19.libera.desktop.model.Author;
 import io.github.arnabmaji19.libera.desktop.model.Book;
 import io.github.arnabmaji19.libera.desktop.model.Publisher;
+import io.github.arnabmaji19.libera.desktop.util.Session;
 import org.asynchttpclient.Response;
 import org.asynchttpclient.util.HttpConstants;
 
@@ -31,6 +32,7 @@ public class BookRequest extends HttpRequest {
         var url = getBaseUrl() + getRoute();
         return getClient()
                 .preparePost(url)
+                .addHeader(getAuthTokenHeaderString(), Session.getInstance().getAuthToken())
                 .addFormParam("title", title)
                 .addFormParam("author_id", Integer.toString(author.getId()))
                 .addFormParam("publisher_id", Integer.toString(publisher.getId()))
@@ -47,6 +49,7 @@ public class BookRequest extends HttpRequest {
         var url = getBaseUrl() + getRoute() + "search";
         return getClient()
                 .prepareGet(url)
+                .addHeader(getAuthTokenHeaderString(), Session.getInstance().getAuthToken())
                 .addQueryParam("keyword", keyword)
                 .execute()
                 .toCompletableFuture()
@@ -64,6 +67,7 @@ public class BookRequest extends HttpRequest {
         var url = getBaseUrl() + getRoute() + subRoute + bookId;
         return getClient()
                 .prepareGet(url)
+                .addHeader(getAuthTokenHeaderString(), Session.getInstance().getAuthToken())
                 .execute()
                 .toCompletableFuture()
                 .thenApplyAsync(response -> {
