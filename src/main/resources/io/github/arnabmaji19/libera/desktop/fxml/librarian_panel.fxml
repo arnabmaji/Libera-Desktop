@@ -15,6 +15,8 @@
             <VBox fx:id="buttonContainer" layoutX="33.0" layoutY="109.0" prefHeight="491.0" prefWidth="180.0"
                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                   AnchorPane.topAnchor="20.0">
+                <Button fx:id="dashboardButton" mnemonicParsing="false" onAction="#navigate"
+                        prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn" text="Dashboard"/>
                 <Button fx:id="addBooksButton" mnemonicParsing="false" onAction="#navigate"
                         prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn" text="Add Books"/>
                 <Button fx:id="searchBooksButton" mnemonicParsing="false" onAction="#navigate"

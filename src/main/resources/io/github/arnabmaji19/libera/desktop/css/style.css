@@ -24,8 +24,17 @@
 }
 
 .tab-btn:focused {
-    -fx-background-color: #388ed1;
-    -fx-border-style: none;
+    -fx-background-color: #0063B1;
+    -fx-border-style: hidden;
+}
+
+.tab-btn:hover {
+    -fx-border-color: transparent;
+}
+
+.selected-button {
+    -fx-background-color: #0063B1;
+    -fx-border-color: transparent;
 }
 
 .form-control {

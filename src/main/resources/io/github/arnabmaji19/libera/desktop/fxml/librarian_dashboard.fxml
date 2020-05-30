@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="800.0" prefWidth="1000.0"
+            xmlns="http://javafx.com/javafx/10.0.2-internal"
+            fx:controller="io.github.arnabmaji19.libera.desktop.controller.LibrarianDashboardController">
+
+    <stylesheets>
+        <URL value="@../css/style.css"/>
+    </stylesheets>
+
+
+    <HBox alignment="CENTER_LEFT" layoutX="14.0" layoutY="14.0" spacing="8" AnchorPane.leftAnchor="30.0"
+          AnchorPane.topAnchor="14.0">
+        <Label styleClass="h1" text="Dashboard"/>
+        <ImageView fx:id="loadingImageView" pickOnBounds="true" preserveRatio="true" visible="false">
+            <Image url="@../images/loading.gif"/>
+        </ImageView>
+    </HBox>
+    <GridPane hgap="60" layoutX="30.0" layoutY="63.0" vgap="40" AnchorPane.leftAnchor="30.0"
+              AnchorPane.topAnchor="80.0">
+        <HBox alignment="CENTER_LEFT" spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <ImageView pickOnBounds="true" preserveRatio="true">
+                <Image url="@../images/book.png"/>
+            </ImageView>
+            <VBox alignment="CENTER" spacing="5">
+                <Label styleClass="h2" text="Books"/>
+                <Label fx:id="booksCountLabel" styleClass="h2" text="10"/>
+            </VBox>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <ImageView pickOnBounds="true" preserveRatio="true">
+                <Image url="@../images/holdings.png"/>
+            </ImageView>
+            <VBox alignment="CENTER" spacing="5">
+                <Label styleClass="h2" text="Holdings"/>
+                <Label fx:id="holdingsCountLabel" styleClass="h2" text="10"/>
+            </VBox>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <ImageView pickOnBounds="true" preserveRatio="true">
+                <Image url="@../images/author.png"/>
+            </ImageView>
+            <VBox alignment="CENTER" spacing="5">
+                <Label styleClass="h2" text="Authors"/>
+                <Label fx:id="authorsCountLabel" styleClass="h2" text="10"/>
+            </VBox>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <ImageView pickOnBounds="true" preserveRatio="true">
+                <Image url="@../images/publisher.png"/>
+            </ImageView>
+            <VBox alignment="CENTER" spacing="5">
+                <Label styleClass="h2" text="Publishers"/>
+                <Label fx:id="publishersCountLabel" styleClass="h2" text="10"/>
+            </VBox>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="2">
+            <ImageView pickOnBounds="true" preserveRatio="true">
+                <Image url="@../images/issues.png"/>
+            </ImageView>
+            <VBox alignment="CENTER" spacing="5">
+                <Label styleClass="h2" text="Issues"/>
+                <Label fx:id="issuesCountLabel" styleClass="h2" text="10"/>
+            </VBox>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <ImageView pickOnBounds="true" preserveRatio="true">
+                <Image url="@../images/users.png"/>
+            </ImageView>
+            <VBox alignment="CENTER" spacing="5">
+                <Label styleClass="h2" text="Users"/>
+                <Label fx:id="usersCountLabel" styleClass="h2" text="10"/>
+            </VBox>
+        </HBox>
+    </GridPane>
+</AnchorPane>
