@@ -28,7 +28,7 @@
             </ImageView>
             <VBox alignment="CENTER" spacing="5">
                 <Label styleClass="h2" text="Books"/>
-                <Label fx:id="booksCountLabel" styleClass="h2" text="10"/>
+                <Label fx:id="booksCountLabel" styleClass="h2"/>
             </VBox>
         </HBox>
         <HBox alignment="CENTER_LEFT" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="0">
@@ -37,7 +37,7 @@
             </ImageView>
             <VBox alignment="CENTER" spacing="5">
                 <Label styleClass="h2" text="Holdings"/>
-                <Label fx:id="holdingsCountLabel" styleClass="h2" text="10"/>
+                <Label fx:id="holdingsCountLabel" styleClass="h2"/>
             </VBox>
         </HBox>
         <HBox alignment="CENTER_LEFT" spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="1">
@@ -46,7 +46,7 @@
             </ImageView>
             <VBox alignment="CENTER" spacing="5">
                 <Label styleClass="h2" text="Authors"/>
-                <Label fx:id="authorsCountLabel" styleClass="h2" text="10"/>
+                <Label fx:id="authorsCountLabel" styleClass="h2"/>
             </VBox>
         </HBox>
         <HBox alignment="CENTER_LEFT" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -55,7 +55,7 @@
             </ImageView>
             <VBox alignment="CENTER" spacing="5">
                 <Label styleClass="h2" text="Publishers"/>
-                <Label fx:id="publishersCountLabel" styleClass="h2" text="10"/>
+                <Label fx:id="publishersCountLabel" styleClass="h2"/>
             </VBox>
         </HBox>
         <HBox alignment="CENTER_LEFT" spacing="10" GridPane.columnIndex="0" GridPane.rowIndex="2">
@@ -64,7 +64,7 @@
             </ImageView>
             <VBox alignment="CENTER" spacing="5">
                 <Label styleClass="h2" text="Issues"/>
-                <Label fx:id="issuesCountLabel" styleClass="h2" text="10"/>
+                <Label fx:id="issuesCountLabel" styleClass="h2"/>
             </VBox>
         </HBox>
         <HBox alignment="CENTER_LEFT" spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="2">
@@ -73,7 +73,7 @@
             </ImageView>
             <VBox alignment="CENTER" spacing="5">
                 <Label styleClass="h2" text="Users"/>
-                <Label fx:id="usersCountLabel" styleClass="h2" text="10"/>
+                <Label fx:id="usersCountLabel" styleClass="h2"/>
             </VBox>
         </HBox>
     </GridPane>

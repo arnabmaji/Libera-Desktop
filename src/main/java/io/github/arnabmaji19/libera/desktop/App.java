@@ -36,7 +36,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("librarian_panel"));
+        scene = new Scene(loadFXML("auth"));
         stage.setScene(scene);
         var jMetro = new JMetro(Style.LIGHT);
         jMetro.setScene(scene);
