@@ -27,6 +27,7 @@
     -fx-background-color: #0063B1;
     -fx-border-style: hidden;
 }
+
 .tab-btn:hover {
     -fx-border-color: transparent;
 }
