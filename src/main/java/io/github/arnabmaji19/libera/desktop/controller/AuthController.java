@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import jfxtras.styles.jmetro.JMetro;
 import org.asynchttpclient.util.HttpConstants;
@@ -35,6 +36,7 @@ public class AuthController implements Initializable {
     private AlertDialog alertDialog;
     private AuthRequest.AuthType activeAuthType;
     private JMetro jMetro;
+    private Stage signUpStage;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -120,5 +122,21 @@ public class AuthController implements Initializable {
             buttonText = "Switch to User Auth";
         }
         authToggleButton.setText(buttonText);
+    }
+
+    @FXML
+    private void signUpAsUser() throws IOException {
+        /*
+         * Show Sign Up Stage
+         */
+        if (signUpStage == null) {
+            var scene = new Scene(App.loadFXML("user_sign_up"));
+            jMetro.setScene(scene);
+            signUpStage = new Stage();
+            signUpStage.setScene(scene);
+            signUpStage.initModality(Modality.APPLICATION_MODAL);
+        }
+
+        signUpStage.show();
     }
 }

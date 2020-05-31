@@ -38,12 +38,14 @@
                 <HBox alignment="CENTER_RIGHT">
                     <Button defaultButton="true" onAction="#authenticate" text="Log In"/>
                 </HBox>
-                <VBox alignment="CENTER">
+                <VBox alignment="CENTER" spacing="8">
                     <padding>
                         <Insets top="20"/>
                     </padding>
                     <Button fx:id="authToggleButton" text="Switch to User Auth" onAction="#toggleAuthType"
                             style="-fx-background-color: transparent"/>
+                    <Button
+                            text="Sign Up as User" style="-fx-background-color: transparent" onAction="#signUpAsUser"/>
                 </VBox>
                 <ProgressBar fx:id="progressbar" visible="false"/>
             </VBox>

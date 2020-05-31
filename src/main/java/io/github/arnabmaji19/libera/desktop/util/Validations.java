@@ -24,4 +24,33 @@ public class Validations {
             return false;
         return pattern.matcher(email).matches();
     }
+
+    public static String validateFormParameters(
+            String firstName,
+            String lastName,
+            String email,
+            String password,
+            String phone,
+            String address
+    ) {
+
+        if (
+                firstName.isBlank() ||
+                        lastName.isBlank() ||
+                        email.isBlank() ||
+                        password.isBlank() ||
+                        phone.isBlank() ||
+                        address.isBlank()
+        ) return "All Fields are Required!";
+
+        if (!Validations.isEmailValid(email)) return "Email not valid!";
+
+        if (password.length() < 4) return "Password must be at least of 4 characters!";
+
+        if (phone.length() < 10 || phone.length() > 15) return "Phone must be between\n10 to 15 characters!";
+
+        if (address.length() < 4) return "Address must be\nat least 4 characters long!";
+
+        return "";
+    }
 }
