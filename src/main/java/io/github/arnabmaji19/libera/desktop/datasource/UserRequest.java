@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import io.github.arnabmaji19.libera.desktop.model.Book;
 import io.github.arnabmaji19.libera.desktop.model.IssuedBook;
 import io.github.arnabmaji19.libera.desktop.model.User;
+import io.github.arnabmaji19.libera.desktop.model.UserSignUpDetails;
 import io.github.arnabmaji19.libera.desktop.util.Session;
 import org.asynchttpclient.Response;
 import org.asynchttpclient.util.HttpConstants;
@@ -86,6 +87,33 @@ public class UserRequest extends EntityRequest<User> {
 
                 });
 
+    }
+
+    public CompletableFuture<String> createNew(UserSignUpDetails userSignUpDetails) {
+        /*
+         * Make an http POST request to create new User account
+         */
+        var url = getBaseUrl() + getRoute();
+        var requestBody = getGson().toJson(userSignUpDetails);
+        return getClient()
+                .preparePost(url)
+                .addHeader("Content-Type", "application/json")
+                .setBody(requestBody)
+                .execute()
+                .toCompletableFuture()
+                .thenApplyAsync(response -> {
+
+                    var status = response.getStatusCode();
+
+                    if (status == HttpConstants.ResponseStatusCodes.OK_200)
+                        return "Successful!";
+
+                    if (status == 400)
+                        return response.getResponseBody();
+
+                    return "Something Went Wrong!";
+
+                });
     }
 
     @Override

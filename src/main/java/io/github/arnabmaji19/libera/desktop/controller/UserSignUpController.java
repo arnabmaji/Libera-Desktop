@@ -1,7 +1,10 @@
 package io.github.arnabmaji19.libera.desktop.controller;
 
+import io.github.arnabmaji19.libera.desktop.datasource.UserRequest;
+import io.github.arnabmaji19.libera.desktop.model.UserSignUpDetails;
 import io.github.arnabmaji19.libera.desktop.util.AlertDialog;
 import io.github.arnabmaji19.libera.desktop.util.Validations;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -49,6 +52,28 @@ public class UserSignUpController {
             return;
         }
 
+        var userSignUpDetails = new UserSignUpDetails(firstName, lastName, email, password, phone, address);
+
         loadingImageView.setVisible(true);
+
+        // make an http request to create new user
+        UserRequest
+                .getInstance()
+                .createNew(userSignUpDetails)
+                .thenAcceptAsync(message -> Platform.runLater(() -> {
+
+                    loadingImageView.setVisible(false);
+
+                    if (alertDialog == null) alertDialog = new AlertDialog();
+                    alertDialog.show(message);
+
+                    // clear all form fields
+                    firstNameTextField.clear();
+                    lastNameTextField.clear();
+                    emailTextField.clear();
+                    passwordField.clear();
+                    phoneTextField.clear();
+                    addressTextField.clear();
+                }));
     }
 }
