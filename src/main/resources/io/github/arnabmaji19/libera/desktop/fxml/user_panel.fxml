@@ -22,7 +22,8 @@
                         prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn" text="Issued Books"
                         onAction="#navigate"/>
                 <Button fx:id="readingHistoryButton" mnemonicParsing="false"
-                        prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn" text="Reading History"/>
+                        prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn" text="Reading History"
+                        onAction="#navigate"/>
             </VBox>
         </AnchorPane>
     </left>

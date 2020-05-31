@@ -1,18 +1,26 @@
 package io.github.arnabmaji19.libera.desktop.model;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Book {
 
+    @Expose
     @SerializedName("book_id")
     private int id;
+    @Expose
     private String title;
+    @Expose
     private String author;
+    @Expose
     private String publisher;
+    @Expose
     @SerializedName("year_published")
     private int yearPublished;
+    @Expose(serialize = false, deserialize = false)
     @SerializedName("total_copies")
     private int totalCopies;
+    @Expose(serialize = false, deserialize = false)
     @SerializedName("available_copies")
     private int availableCopies;
 

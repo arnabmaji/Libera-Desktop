@@ -3,12 +3,15 @@ package io.github.arnabmaji19.libera.desktop.controller;
 import io.github.arnabmaji19.libera.desktop.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class UserPanelController {
+public class UserPanelController implements Initializable {
 
     @FXML
     private Button searchBooksButton;
@@ -20,6 +23,17 @@ public class UserPanelController {
     private AnchorPane pane;
 
     private Button activeButton;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        // show search controller  by default
+        try {
+            showPanel(searchBooksButton);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     private void navigate(ActionEvent e) throws IOException {
@@ -40,6 +54,7 @@ public class UserPanelController {
         String fxml = null;
         if (activeButton.equals(searchBooksButton)) fxml = "search_books";
         else if (activeButton.equals(issuedBooksButton)) fxml = "user_issues";
+        else if (activeButton.equals(readingHistoryButton)) fxml = "user_reading_history";
 
         var child = App.loadFXML(fxml);
 

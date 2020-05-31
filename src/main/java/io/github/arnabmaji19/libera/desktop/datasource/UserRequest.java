@@ -1,6 +1,8 @@
 package io.github.arnabmaji19.libera.desktop.datasource;
 
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import io.github.arnabmaji19.libera.desktop.model.Book;
 import io.github.arnabmaji19.libera.desktop.model.IssuedBook;
 import io.github.arnabmaji19.libera.desktop.model.User;
 import io.github.arnabmaji19.libera.desktop.util.Session;
@@ -60,6 +62,30 @@ public class UserRequest extends EntityRequest<User> {
                     return getGson().fromJson(response.getResponseBody(), listType);
 
                 });
+    }
+
+    public CompletableFuture<List<Book>> getReadingHistory() {
+        /*
+         * Fetch Reading History for currently authenticated User
+         */
+
+        var url = getBaseUrl() + getRoute() + "actions/history";
+        return getClient()
+                .prepareGet(url)
+                .addHeader(getAuthTokenHeaderString(), Session.getInstance().getAuthToken())
+                .execute()
+                .toCompletableFuture()
+                .thenApplyAsync(response -> {
+
+                    var listType = new TypeToken<List<Book>>() {
+                    }.getType();
+                    var gson = new GsonBuilder()
+                            .excludeFieldsWithoutExposeAnnotation()
+                            .create();
+                    return gson.fromJson(response.getResponseBody(), listType);
+
+                });
+
     }
 
     @Override
