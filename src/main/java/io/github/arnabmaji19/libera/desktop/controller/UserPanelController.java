@@ -39,6 +39,7 @@ public class UserPanelController {
 
         String fxml = null;
         if (activeButton.equals(searchBooksButton)) fxml = "search_books";
+        else if (activeButton.equals(issuedBooksButton)) fxml = "user_issues";
 
         var child = App.loadFXML(fxml);
 

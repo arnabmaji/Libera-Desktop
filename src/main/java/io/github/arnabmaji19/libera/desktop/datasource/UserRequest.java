@@ -1,6 +1,7 @@
 package io.github.arnabmaji19.libera.desktop.datasource;
 
 import com.google.gson.reflect.TypeToken;
+import io.github.arnabmaji19.libera.desktop.model.IssuedBook;
 import io.github.arnabmaji19.libera.desktop.model.User;
 import io.github.arnabmaji19.libera.desktop.util.Session;
 import org.asynchttpclient.Response;
@@ -37,6 +38,27 @@ public class UserRequest extends EntityRequest<User> {
                     if (response.getStatusCode() != HttpConstants.ResponseStatusCodes.OK_200)
                         return null;
                     return getGson().fromJson(response.getResponseBody(), User.class);
+                });
+    }
+
+    public CompletableFuture<List<IssuedBook>> getIssuesForUser() {
+        /*
+         * Fetch all issued books for currently authenticated User
+         */
+
+        var url = getBaseUrl() + getRoute() + "actions/issues";
+        return getClient()
+                .prepareGet(url)
+                .addHeader(getAuthTokenHeaderString(), Session.getInstance().getAuthToken())
+                .execute()
+                .toCompletableFuture()
+                .thenApplyAsync(response -> {
+
+                    // parse response to a list of IssuedBook
+                    Type listType = new TypeToken<List<IssuedBook>>() {
+                    }.getType();
+                    return getGson().fromJson(response.getResponseBody(), listType);
+
                 });
     }
 

@@ -19,7 +19,8 @@
                         prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn" text="Search Books"
                         onAction="#navigate"/>
                 <Button fx:id="issuedBooksButton" mnemonicParsing="false"
-                        prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn" text="Issued Books"/>
+                        prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn" text="Issued Books"
+                        onAction="#navigate"/>
                 <Button fx:id="readingHistoryButton" mnemonicParsing="false"
                         prefWidth="${buttonContainer.prefWidth}" styleClass="tab-btn" text="Reading History"/>
             </VBox>
